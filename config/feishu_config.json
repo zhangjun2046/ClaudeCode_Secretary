@@ -1,0 +1,77 @@
+{
+  "enabled": true,
+  "app_id": "cli_a8342fd4e4fa100b",
+  "app_secret": "YzS7LU48xqd42I48SB9wRe1nSerZL3D5",
+  "webhook_url": "https://open.feishu.cn/open-apis/im/v1/messages",
+  "auto_push_rules": {
+    "news_zhang": {
+      "enabled": true,
+      "trigger_keywords": ["早上好", "早安", "good morning"],
+      "auto_send_to_feishu": true,
+      "message_type": "interactive",
+      "include_summary": true,
+      "card_template": {
+        "header_color": "blue",
+        "include_button": true,
+        "button_text": "查看完整详情"
+      }
+    },
+    "coach_zhang": {
+      "enabled": true,
+      "trigger_keywords": ["自律"],
+      "auto_send_to_feishu": false,
+      "message_type": "interactive",
+      "include_data": true
+    },
+    "reflection_zhang": {
+      "enabled": true,
+      "trigger_keywords": ["今工作结束了", "今天工作结束了", "下班了"],
+      "auto_send_to_feishu": false,
+      "message_type": "interactive",
+      "include_insights": true
+    }
+  },
+  "notification_preferences": {
+    "news_brief": {
+      "enabled": true,
+      "send_time": "07:00",
+      "include_summary": true
+    },
+    "health_reminder": {
+      "enabled": true,
+      "send_time": "08:00",
+      "include_data": true
+    },
+    "reflection_summary": {
+      "enabled": false,
+      "send_time": "21:30",
+      "include_insights": false
+    }
+  },
+  "notification_hours": {
+    "start": "07:00",
+    "end": "22:00"
+  },
+  "user_info": {
+    "user_id": "ou_641f5a924725d2e039901df59f87141d",
+    "open_id": "ou_641f5a924725d2e039901df59f87141d",
+    "email": "zhangjun19790624@gmail.com"
+  },
+  "message_format": {
+    "type": "interactive",
+    "use_markdown": true,
+    "use_card": true
+  },
+  "push_settings": {
+    "max_retries": 3,
+    "retry_delay_seconds": 5,
+    "timeout_seconds": 30,
+    "log_push_history": true
+  },
+  "notes": {
+    "setup_guide": "请参考 docs/feishu_setup.md 完成飞书配置",
+    "api_docs": "https://open.feishu.cn/document/home/index",
+    "webhook_guide": "https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot",
+    "auto_push_info": "当用户说'早上好'时，新闻张会自动搜集新闻并推送到飞书账户"
+  }
+}
