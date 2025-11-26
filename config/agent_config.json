@@ -1,0 +1,139 @@
+{
+  "agents": {
+    "news_agent": {
+      "name": "新闻张",
+      "trigger": "早上好",
+      "enabled": true,
+      "search_config": {
+        "max_results_per_category": 5,
+        "time_range": "24h",
+        "categories": [
+          {
+            "name": "AI领域",
+            "keywords": ["AI", "大模型", "GPT", "Claude", "Gemini", "人工智能", "机器学习", "深度学习"],
+            "priority": "high"
+          },
+          {
+            "name": "金融市场",
+            "keywords": ["美联储", "利率", "CPI", "宏观经济", "央行", "通胀"],
+            "priority": "medium"
+          },
+          {
+            "name": "股市动态",
+            "keywords": ["腾讯", "小米", "阿里巴巴", "中概股", "港股", "A股"],
+            "priority": "high"
+          }
+        ]
+      },
+      "output_config": {
+        "template": "templates/news_template.md",
+        "output_path": "daily_records/{date}/今日新闻.md",
+        "include_summary": true,
+        "max_length": 800
+      },
+      "notification_config": {
+        "auto_send_feishu": true,
+        "feishu_message_type": "post",
+        "include_link": false,
+        "send_timing": "after_generation"
+      }
+    },
+    "coach_agent": {
+      "name": "教练张",
+      "trigger": "自律",
+      "enabled": true,
+      "health_config": {
+        "weight_goal": {
+          "target": 70,
+          "current": 80,
+          "unit": "kg",
+          "deadline": "2025-12-31"
+        },
+        "exercise_preferences": {
+          "liked": ["跑步", "划船机", "健身", "游泳", "散步"],
+          "disliked": [],
+          "available_times": {
+            "weekday": ["06:00-07:00", "20:00-21:00"],
+            "weekend": ["06:00-12:00"]
+          }
+        },
+        "diet_preferences": {
+          "liked_foods": ["青菜", "轻食", "煎饼"],
+          "avoid_foods": ["鱼"],
+          "restrictions": ["低碳", "低脂"],
+          "platforms": ["美团", "饿了么"]
+        },
+        "calorie_budget": {
+          "daily_target": "1400-1600",
+          "deficit_target": 500
+        }
+      },
+      "output_config": {
+        "template": "templates/health_template.md",
+        "output_path": "daily_records/{date}/健康.md",
+        "update_profile": true,
+        "update_history": true
+      }
+    },
+    "reflection_agent": {
+      "name": "反思张",
+      "trigger": "今工作结束了",
+      "enabled": true,
+      "conversation_config": {
+        "min_rounds": 3,
+        "max_rounds": 5,
+        "question_template": [
+          "今天主要做了什么工作？",
+          "这些工作中，哪些让你感到有成就感或有挑战？",
+          "你觉得今天的状态怎么样？有什么情绪波动吗？",
+          "从今天的经历中，你学到了什么？",
+          "明天有什么想要改进或尝试的吗？"
+        ],
+        "deep_follow_up": true,
+        "emotional_support": true
+      },
+      "analysis_config": {
+        "detect_patterns": true,
+        "track_mood": true,
+        "track_productivity": true,
+        "generate_insights": true
+      },
+      "output_config": {
+        "template": "templates/reflection_template.md",
+        "output_path": "daily_records/{date}/反思.md",
+        "update_insights": true,
+        "insights_file": "context/insights.md"
+      }
+    }
+  },
+  "global_settings": {
+    "timezone": "Asia/Shanghai",
+    "language": "zh-CN",
+    "date_format": "YYYY-MM-DD",
+    "context_files": {
+      "about_me": "context/about_me.md",
+      "health_history": "context/health_history.md",
+      "insights": "context/insights.md",
+      "preferences": "context/preferences.md"
+    },
+    "daily_records_path": "daily_records",
+    "auto_create_folders": true
+  },
+  "integration": {
+    "feishu": {
+      "config_file": "config/feishu_config.json"
+    },
+    "mcp_servers": {
+      "fetch": "required",
+      "filesystem": "required",
+      "memory": "recommended",
+      "brave_search": "recommended",
+      "time": "optional"
+    }
+  },
+  "notes": {
+    "description": "Agent行为配置文件",
+    "version": "1.0.0",
+    "last_updated": "2025-10-17"
+  }
+}
